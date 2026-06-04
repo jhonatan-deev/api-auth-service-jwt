@@ -1,4 +1,4 @@
 package com.jhonatan.authservice.dto;
 
-public record TokenResponse() {
+public record TokenResponse(String accessToken) {
 }
