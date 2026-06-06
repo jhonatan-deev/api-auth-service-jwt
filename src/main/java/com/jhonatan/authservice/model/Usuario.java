@@ -27,7 +27,7 @@ public class Usuario implements UserDetails {
 
     @Setter
     @Column(nullable = false)
-    private String password;
+    private String senha;
 
     @Setter
     @Builder.Default
@@ -40,8 +40,28 @@ public class Usuario implements UserDetails {
     }
 
     @Override
+    public String getPassword() {
+        return this.senha;
+    }
+
+    @Override
     public String getUsername() {
         return login;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
     }
 
     @Override
