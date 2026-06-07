@@ -1,5 +1,6 @@
 package com.jhonatan.authservice.model;
 
+import com.jhonatan.authservice.enuns.Role;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
@@ -34,8 +35,22 @@ public class Usuario implements UserDetails {
     @Column(nullable = false)
     private Boolean active = true;
 
+
+    @Setter
+    @Enumerated(EnumType.STRING)
+    @Builder.Default
+    @Column(nullable = false)
+    private Role role = Role.USER;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
+        if (role == Role.ADMIN) {
+            return List.of(
+                    new SimpleGrantedAuthority("ROLE_ADMIN"),
+                    new SimpleGrantedAuthority("ROLE_USER")
+            );
+        }
+
         return List.of(new SimpleGrantedAuthority("ROLE_USER"));
     }
 

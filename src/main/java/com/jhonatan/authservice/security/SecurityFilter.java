@@ -20,11 +20,8 @@ public class SecurityFilter extends OncePerRequestFilter {
     @Autowired
     private JwtService jwtService;
 
-    private final UsuarioRepository usuarioRepository;
-
-    public SecurityFilter(UsuarioRepository usuarioRepository) {
-        this.usuarioRepository = usuarioRepository;
-    }
+    @Autowired
+    private UsuarioRepository usuarioRepository;
 
     @Override
     protected void doFilterInternal(
