@@ -21,7 +21,7 @@ public class JwtService {
         try {
             Algorithm algorithm = Algorithm.HMAC256(secret);
             return JWT.create()
-                    .withIssuer("API Autenticação")
+                    .withIssuer("API_Autenticacao")
                     .withSubject(usuario.getLogin())
                     .withExpiresAt(expirationDate())
                     .withClaim("id", usuario.getId())
@@ -35,7 +35,7 @@ public class JwtService {
         try {
             Algorithm algorithm = Algorithm.HMAC256(secret);
             return JWT.require(algorithm)
-                    .withIssuer("API Autenticacao")
+                    .withIssuer("API_Autenticacao")
                     .build()
                     .verify(token)
                     .getSubject();
