@@ -1,4 +1,4 @@
-package com.jhonatan.authservice.security;
+package com.jhonatan.authservice.service;
 
 import com.jhonatan.authservice.repository.UsuarioRepository;
 import org.springframework.security.core.userdetails.UserDetails;

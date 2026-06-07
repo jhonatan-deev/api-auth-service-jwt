@@ -29,14 +29,4 @@ public class AuthController {
         var tokenJWT = tokenService.generateToken(usuario);
         return ResponseEntity.ok(new TokenResponse(tokenJWT));
     }
-
-    @RestController
-    @RequestMapping("/teste")
-    public class TesteController {
-
-        @GetMapping
-        public String teste() {
-            return "JWT funcionando!";
-        }
-    }
 }

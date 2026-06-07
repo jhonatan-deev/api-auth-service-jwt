@@ -28,7 +28,16 @@ public class SecurityConfig {
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
+                        // Público
                         .requestMatchers(HttpMethod.POST, "/login").permitAll()
+
+                        // Apenas ADMIN
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
+
+                        // Qualquer usuário logado (USER ou ADMIN)
+                        .requestMatchers("/user/**").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers("/teste").hasAnyRole("USER", "ADMIN")
+
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
